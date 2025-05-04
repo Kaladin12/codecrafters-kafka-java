@@ -33,7 +33,7 @@ public class Main {
        BufferedOutputStream out = new BufferedOutputStream(clientSocket.getOutputStream());
 
        out.write(ByteBuffer.allocate(4).putInt(message.message_size()).array());
-       out.write(message.correlation_id());
+       out.write(ByteBuffer.allocate(4).putInt(message.correlation_id()).array());
        out.flush();
 
      } catch (IOException e) {
