@@ -6,6 +6,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.nio.ByteBuffer;
 
 public class Main {
   public static void main(String[] args){
@@ -31,7 +32,7 @@ public class Main {
 
        BufferedOutputStream out = new BufferedOutputStream(clientSocket.getOutputStream());
 
-       out.write(message.message_size());
+       out.write(ByteBuffer.allocate(4).putInt(message.message_size()).array());
        out.write(message.correlation_id());
        out.flush();
 
